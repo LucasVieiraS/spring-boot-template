@@ -42,25 +42,31 @@ This template is designed to cover the foundations most real-world Spring Boot s
   Centralized error handling with consistent JSON responses.
 
 - **Testcontainers**  
-  Runs integration tests against real Postgres instances. Prevents “works on my machine” problems.
+  Runs integration tests against real Postgres instances. Prevents "works on my machine" problems.
 
 - **Docker Compose support**  
   Local development with Postgres (and optional pgAdmin).
+
+- **Complete CRUD Example**  
+  Full User management implementation showing all layers working together.
+
+- **Database Migrations**  
+  Sample Flyway migration with users table and seed data.
 
 ---
 
 ## Project structure
 
-```
+```text
 src/main/java/com/github/lucasvieiras/springboot_template
 ├── config/         # API prefix config, OpenAPI config, @ConfigurationProperties
-├── controllers/    # REST controllers
-├── dtos/           # Request/response DTOs
-├── entities/       # JPA entities
+├── controllers/    # REST controllers (UserController example)
+├── dtos/           # Request/response DTOs (UserDTO example)
+├── entities/       # JPA entities (User example)
 ├── exceptions/     # GlobalExceptionHandler + custom exceptions
-├── mappers/        # MapStruct interfaces
-├── repositories/   # Spring Data JPA repositories
-└── services/       # Business logic
+├── mappers/        # MapStruct interfaces (UserMapper example)
+├── repositories/   # Spring Data JPA repositories (UserRepository example)
+└── services/       # Business logic (UserService example)
 ```
 
 ---
@@ -68,16 +74,19 @@ src/main/java/com/github/lucasvieiras/springboot_template
 ## Running locally
 
 ### Prerequisites
+
 - JDK 17+
 - Maven 3.9+
 - Docker and Docker Compose
 
 ### Start database
+
 ```bash
-docker compose -f infra/docker-compose.yml up -d
+docker compose up -d
 ```
 
 ### Run application
+
 ```bash
 ./mvnw spring-boot:run
 ```
@@ -85,6 +94,18 @@ docker compose -f infra/docker-compose.yml up -d
 Application runs at: `http://localhost:8080`  
 Swagger UI: `http://localhost:8080/swagger-ui.html`  
 Health endpoint: `http://localhost:8080/api/v1/health`
+
+### Example API endpoints
+
+The template includes a complete User CRUD example:
+
+- `GET /api/v1/users` - List all users
+- `GET /api/v1/users/{id}` - Get user by ID
+- `POST /api/v1/users` - Create new user
+- `PUT /api/v1/users/{id}` - Update user
+- `DELETE /api/v1/users/{id}` - Delete user
+
+Sample users are pre-loaded via migration.
 
 ---
 
@@ -102,4 +123,4 @@ Integration tests (`*IT.java`) use **Testcontainers** to spin up a PostgreSQL co
 
 ## License
 
-[MIT](LICENSE) © 2025 [Lucas Vieiras](https://github.com/lucasvieiras)
+[MIT](LICENSE) © 2025 [Lucas Vieira](https://github.com/lucasvieiras)
