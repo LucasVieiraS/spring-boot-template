@@ -1,4 +1,4 @@
-﻿package com.github.lucasvieiras.springboot_template.exceptions;
+package com.github.lucasvieiras.springboot_template.exceptions;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
